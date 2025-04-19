@@ -22,10 +22,9 @@ export default async (req, res)=>{
     // Generate token
     const token = await genToken(req.body)
 
-    // Put token in headers
-    res.set('Set-Cookie', `jwt=${token}; path=/; HttpOnly; SameSite=Strict`)
     
-    res.status(201).json({success: true})
+    // Put token in headers
+    res.status(201).set('Set-Cookie', `jwt=${token}; path=/; HttpOnly; SameSite=Strict`).json({success: true})
   } catch(err){
     console.log(err)
     res.status(400).json({success: false})

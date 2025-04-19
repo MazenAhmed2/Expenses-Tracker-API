@@ -1,18 +1,18 @@
-// Middleware to validate username and password from 
+// Middleware to validate username and password from
 // signup or login routes
 
-import joi from 'joi'
+import joi from "joi";
 
 const schema = joi.object({
-  username : joi.string().required(),
-  password : joi.string().required().min(8)
-})
+  username: joi.string().required(),
+  password: joi.string().required().min(8),
+});
 
-export default async (req, res, next)=>{
-  
-  let result = schema.validate(req.body)
-  console.log(result)
+export default async (req, res, next) => {
+  let result = schema.validate(req.body);
   if (result.error)
-    res.status(400).json({err : 'Invalid username or password', success: false})
-  next()
-}
+    res
+      .status(400)
+      .json({ err: "Invalid username or password", success: false });
+  next();
+};
