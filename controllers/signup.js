@@ -10,7 +10,7 @@ export default async (req, res)=>{
     let {username, password} = req.body
 
     // Check if user already exists
-    if ((await users.find({username: username})).length > 1)  throw new Error('There is something wrong in username or password')
+    if ((await users.find({username: username})).length > 0)  throw new Error('There is something wrong in username or password')
 
     // Hash the password
     let salt = bcrypt.genSaltSync(10)
@@ -20,7 +20,7 @@ export default async (req, res)=>{
     await users.insertOne({username: username, password: hashedPassword})
 
     // Generate token
-    const token = await genToken(req.body)
+    const token = await genToken(username)
 
     
     // Put token in headers
