@@ -1,4 +1,4 @@
-import mongoose, { mongo } from 'mongoose'
+import mongoose, { Model, mongo } from 'mongoose'
 import env from '../config.js'
 
 mongoose.connect(env.DB_URL)
@@ -8,4 +8,4 @@ const schema = mongoose.Schema({
   password: String
 })
 
-export default mongoose.model('users', schema)
+export default mongoose.model('users', schema);
