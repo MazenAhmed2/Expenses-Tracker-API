@@ -6,8 +6,8 @@ import controller from '../controllers/expenses.js'
 const router = express.Router()
 
 router.get('/', controller.getAllExpenses)
-router.get('/:id', controller.getExpenseByID)
-// router.post('/')
+router.get('/:id', controller.getExpenseById)
+router.post('/', controller.createExpense)
 // router.put('/:id')
 // router.delete('/:id')
 
