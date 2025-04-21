@@ -11,11 +11,11 @@ export default async (req, res, next)=>{
       res.status(401).json({err: 'No jwt'})
 
     // Verify the token
-    let result = jwt.verify(token, env.SECRET)
+    jwt.verify(token, env.SECRET)
 
-    // Decode the token Store the username in req
-    const {username} = jwt.decode(token)
-    req.username = username
+    // Decode the token Store the userId in req
+    const {sub} = jwt.decode(token)
+    req.userId = sub
     next()
   } catch {
     res.status(401).json({err : 'Invalid Token'})

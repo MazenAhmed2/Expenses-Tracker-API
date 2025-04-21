@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 import env from "../config.js";
 
-export default async (username) => {
+export default async (id) => {
   return jwt.sign(
-    { username: username},
+    { sub : id},
     env.SECRET,
   );
 };

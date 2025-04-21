@@ -17,10 +17,10 @@ export default async (req, res)=>{
     let hashedPassword = bcrypt.hashSync(password, salt)
 
     // Insert data in db
-    await users.insertOne({username: username, password: hashedPassword})
+    let id = (await users.insertOne({username: username, password: hashedPassword}))._id.toString()
 
     // Generate token
-    const token = await genToken(username)
+    const token = await genToken(id)
 
     
     // Put token in headers

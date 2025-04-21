@@ -14,14 +14,16 @@ export default async (req, res)=>{
     if (result.length == 0)
       throw new Error('There is something wrong in username or password')
 
+    // Parse the hashed password and userId from db result
     let hashedPassword = result[0].password
+    let userId = result[0]._id.toString()
 
     // Compare the passwords
     if(!(bcrypt.compareSync(password, hashedPassword)))
       throw new Error('There is something wrong in username or password')
 
     // Generate token
-    const token = await genToken(username)
+    const token = await genToken(userId)
 
 
     // Put token in headers
