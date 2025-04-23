@@ -30,20 +30,26 @@ router.get("/", controller.getAllExpenses);
  * @openapi
  * /expenses/{id} :
  *   get :
- *     tag :
+ *     tags :
  *       - Expenses
  *     parameters :
- *       -in : path
- *       name : id
- *       required : true
- *       description : Object ID
- *       schema :
- *         type : string
+ *       - in : path
+ *         name : id
+ *         required : true
+ *         description : Object ID
+ *         schema :
+ *           type : string
  *     summary : Get Expense by ID
  *     description : Retrieve all user expenses from db using jwt
- *     response :
- *       200 : successful with all expenses
- *       400 : faliure
+ *     responses :
+ *       200 :
+ *          description : successful with all expenses
+ *          content :
+ *            application/json :
+ *              schema :
+ *                $ref : '#/components/schemas/expense'
+ *       400 :
+ *          description : faliure
  */
 router.get("/:id", controller.getExpenseById);
 
@@ -117,13 +123,16 @@ router.put("/:id", controller.updateExpense);
  *         description : Object ID for Expense
  *     tags :
  *       - Expenses
- *     summary : Update a Expense
+ *     summary : Delete a Expense
  *     security :
  *       - bearerAuth : []
  *     responses :
  *       200 :
  *         description : Posted Successfully
+ *       404 :
+ *         description : Not found
+ * 
  */
-router.delete('/:id', controller.deleteExpense)
+router.delete("/:id", controller.deleteExpense);
 
 export default router;
