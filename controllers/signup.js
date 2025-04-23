@@ -24,7 +24,8 @@ export default async (req, res)=>{
 
     
     // Put token in headers
-    res.status(201).set('Set-Cookie', `jwt=${token}; path=/; HttpOnly; SameSite=Strict`).json({success: true})
+    res.set('Set-Cookie', `jwt=${token}; path=/; HttpOnly; SameSite=Strict`)
+    res.status(201).json({token : token})
   } catch(err){
     console.log(err)
     res.status(400).json({success: false})
