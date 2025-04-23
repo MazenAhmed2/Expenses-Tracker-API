@@ -14,5 +14,5 @@ export default async (req, res, next) => {
     res
       .status(400)
       .json({ err: "Invalid username or password", success: false });
-  next();
+  else next();
 };

@@ -1,6 +1,4 @@
 import expenses from "../models/expenses.js";
-import users from "../models/users.js";
-import { ObjectId } from "mongodb";
 
 export default {
   getAllExpenses: async function (req, res) {
@@ -8,7 +6,7 @@ export default {
       res.status(200).json(await expenses.find({ userId: req.userId }));
     } catch (err) {
       console.log(err);
-      res.status(400).json({ success: false });
+      res.status(500).json({ success: false });
     }
   },
 

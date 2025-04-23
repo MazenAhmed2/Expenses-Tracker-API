@@ -1,5 +1,5 @@
 entrypoint = "index.js"
-modules = ["nodejs-22"]
+modules = ["nodejs-22", "docker"]
 hidden = [".config", "package-lock.json"]
 
 [gitHubImport]
@@ -7,12 +7,16 @@ requiredFiles = [".replit", "replit.nix", "package.json", "package-lock.json"]
 
 [nix]
 channel = "stable-24_11"
-packages = ["mongosh"]
+packages = ["mongosh", "docker", "docker_25", "redis"]
 
 [deployment]
 run = ["node", "index.js"]
 deploymentTarget = "autoscale"
 ignorePorts = false
+
+[[ports]]
+localPort = 6379
+externalPort = 3000
 
 [[ports]]
 localPort = 8000
