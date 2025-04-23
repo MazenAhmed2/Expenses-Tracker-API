@@ -30,6 +30,6 @@ export default async (req, res)=>{
     res.status(200).set('Set-Cookie', `jwt=${token}; path=/; HttpOnly; SameSite=Strict`).json({token : token})
   } catch(err){
     console.log(err)
-    res.status(400).json({success: false})
+    res.status(404).json({success: false})
   }
 }
