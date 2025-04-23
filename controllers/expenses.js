@@ -1,6 +1,6 @@
 import expenses from "../models/expenses.js";
 import users from "../models/users.js";
-import {ObjectId} from 'mongodb'
+import { ObjectId } from "mongodb";
 
 export default {
   getAllExpenses: async function (req, res) {
@@ -50,11 +50,28 @@ export default {
       let data = req.body;
 
       // Update in db
-      await expenses.updateOne({ _id: id }, data)
+      await expenses.updateOne({ _id: id }, data);
       res.status(200).json((await expenses.find({ _id: id }))[0]);
     } catch (err) {
       console.log(err);
       res.status(400).json({ success: false });
+    }
+  },
+
+  deleteExpense: async function (req, res) {
+    try {
+      // parse from request
+      const id = req.params.id;
+
+      // Delete the Expense
+      let { deletedCount } = await expenses.deleteOne({ _id: id });
+      // Check if thing deleted
+      if (deletedCount < 1) throw new Error("Not found");
+
+      res.status(200).json({ success: true });
+    } catch (err) {
+      console.log(err);
+      res.status(404).json({ success: false });
     }
   },
 };
