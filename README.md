@@ -3,6 +3,8 @@
 ## Note About The Application
 This is Backend API made with Node.js, Created to Make CRUD Operation on Your Expenses, Using MongoDB, Documented with Swagger.
 
+<img src="./API-Documentation.PNG">
+
 ## Installation Instructions for Users
 Dockerfile comming soon...
 
